@@ -1,0 +1,2 @@
+torch
+wtpsplit==2.0.8

@@ -1,0 +1,59 @@
+services:
+
+  api:
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: ["flask", "run", "--host", "0.0.0.0"]
+    ports:
+      - "5010:5000"
+    volumes:
+      - ./backend/:/app/
+    depends_on:
+      - db
+
+  worker:
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: [celery, -A, celery_worker, worker, --loglevel=info]
+    volumes:
+      - ./backend/:/app/
+    depends_on:
+      - db
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "16369:6379"
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: dev.Dockerfile
+    # Set environment variables directly in the docker-compose file
+    environment:
+      NEXT_PUBLIC_ENV_VARIABLE: "dummy"
+    # Set environment variables based on the .env file
+    env_file:
+      - ./frontend/.env
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/package.json:/app/package.json
+    restart: always
+    ports:
+      - 3010:3000
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: mypassword
+    volumes:
+      - ./db-data/postgres:/var/lib/postgresql/data
+      - ./db-data/postgres-init:/docker-entrypoint-initdb.d 
+    ports:
+      - 50432:5432

@@ -1,0 +1,9 @@
+
+.text {
+  display: -webkit-box;
+  overflow: hidden;
+  padding-block: 0;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

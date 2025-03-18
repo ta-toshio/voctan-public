@@ -1,0 +1,10 @@
+
+export const createAccountSuccess = 'ご登録ありがとうございます!'
+export const createDocumentSuccessTitle = '単語帳の作成を開始します'
+export const createDocumentSuccessDesc = 'しばらくお待ちください (サイズによっては1時間以上かかることがあります)'
+export const createDocumentFailed = '単語帳の作成に失敗しました'
+export const deleteAccountSuccess = '退会しました。またのご利用をお待ちしております'
+export const deleteAccountFailed = '退会処理に失敗しました'
+export const confirmDeleteAccount = '本当に退会してよろしいですか？'
+export const deleteDocumentSuccess = '単語帳を削除しました'
+export const deleteDocumentFailed = '単語帳削除に失敗しました'

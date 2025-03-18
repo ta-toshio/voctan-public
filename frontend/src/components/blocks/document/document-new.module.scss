@@ -1,0 +1,14 @@
+.document {
+    line-height: 18px;
+    aspect-ratio: 220 / 310;
+    width: 100%;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
